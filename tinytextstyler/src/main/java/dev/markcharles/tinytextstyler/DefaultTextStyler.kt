@@ -1,0 +1,70 @@
+package dev.markcharles.tinytextstyler
+
+import android.graphics.Color
+import android.graphics.Typeface
+import android.text.style.*
+import android.view.View
+
+abstract class DefaultTextStyler : TinyTextStyler {
+
+    override fun getCharacterStyle(key: String, value: String): CharacterStyle? {
+        return when (key) {
+            TinyTextStyler.KEY_STYLE -> {
+                when (value) {
+                    TinyTextStyler.VALUE_BOLD -> getTypeface(value)?.let(::CustomTypefaceSpan)
+                    TinyTextStyler.VALUE_ITALIC -> getTypeface(value)?.let(::CustomTypefaceSpan)
+                    TinyTextStyler.VALUE_STRIKE -> StrikethroughSpan()
+                    TinyTextStyler.VALUE_UNDERLINE -> UnderlineSpan()
+                    else -> null
+                }
+
+            }
+            TinyTextStyler.KEY_CLICK -> {
+                getSpanClickListener(value)?.let {
+                    object : ClickableSpan() {
+                        override fun onClick(widget: View) {
+                            it.onClick(widget)
+                        }
+                    }
+                }
+            }
+            TinyTextStyler.KEY_BACKGROUND_COLOR -> getBackgroundColor(value).let(::BackgroundColorSpan)
+            TinyTextStyler.KEY_COLOR -> getForegroundColor(value).let(::ForegroundColorSpan)
+            TinyTextStyler.KEY_ABSOLUTE_SIZE -> getAbsoluteSize(value).let(::AbsoluteSizeSpan)
+            TinyTextStyler.KEY_RELATIVE_SIZE -> getRelativeSize(value).let(::RelativeSizeSpan)
+            else -> null
+        }
+    }
+
+    open fun getAbsoluteSize(value: String): Int = value.toInt()
+
+    open fun getRelativeSize(value: String): Float = value.toFloat()
+
+    open fun getTypeface(value: String): Typeface? = null
+
+    open fun getForegroundColor(value: String): Int = parseColor(value)
+
+    open fun getBackgroundColor(value: String): Int = parseColor(value)
+
+    open fun getSpanClickListener(value: String): View.OnClickListener? = null
+
+    private fun parseColor(value: String): Int {
+        return when (value) {
+            TinyTextStyler.VALUE_GREEN -> Color.GREEN
+            TinyTextStyler.VALUE_BLUE -> Color.BLUE
+            TinyTextStyler.VALUE_YELLOW -> Color.YELLOW
+            TinyTextStyler.VALUE_RED -> Color.RED
+            TinyTextStyler.VALUE_GRAY -> Color.GRAY
+            TinyTextStyler.VALUE_CYAN -> Color.CYAN
+            TinyTextStyler.VALUE_WHITE -> Color.WHITE
+            TinyTextStyler.VALUE_BLACK -> Color.BLACK
+            else -> try {
+                Color.parseColor(value)
+            } catch (e: IllegalArgumentException) {
+                e.printStackTrace()
+                Color.BLACK
+            }
+        }
+    }
+
+}

@@ -1,4 +1,4 @@
-package dev.markcharles.tinytextstyler
+package dev.markcharles.tinytextstyler.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
