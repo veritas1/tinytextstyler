@@ -1,6 +1,26 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.novoda.bintray-release'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9.2'
+    }
+}
+
+publish {
+    userOrg = 'veritas1'
+    repoName = 'Android'
+    groupId = 'dev.markcharles'
+    artifactId = 'tiny-text-styler'
+    publishVersion = '0.1.0'
+    desc = 'Easily add style to your string resources, with dynamic argument support :)'
+    website = 'https://github.com/veritas1/tinytextstyler'
+}
 
 android {
     compileSdkVersion 29
