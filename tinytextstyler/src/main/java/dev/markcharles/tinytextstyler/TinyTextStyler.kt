@@ -15,9 +15,12 @@ interface TinyTextStyler {
         const val KEY_COLOR = "color"
         const val KEY_ABSOLUTE_SIZE = "abs_size"
         const val KEY_RELATIVE_SIZE = "rel_size"
+        const val KEY_TYPEFACE = "typeface"
 
+        const val VALUE_NORMAL = "normal"
         const val VALUE_BOLD = "bold"
         const val VALUE_ITALIC = "italic"
+        const val VALUE_BOLD_ITALIC = "bold_italic"
         const val VALUE_STRIKE = "strike"
         const val VALUE_UNDERLINE = "underline"
 

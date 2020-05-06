@@ -11,8 +11,10 @@ abstract class DefaultTextStyler : TinyTextStyler {
         return when (key) {
             TinyTextStyler.KEY_STYLE -> {
                 when (value) {
-                    TinyTextStyler.VALUE_BOLD -> getTypeface(value)?.let(::CustomTypefaceSpan)
-                    TinyTextStyler.VALUE_ITALIC -> getTypeface(value)?.let(::CustomTypefaceSpan)
+                    TinyTextStyler.VALUE_NORMAL -> StyleSpan(Typeface.NORMAL)
+                    TinyTextStyler.VALUE_BOLD -> StyleSpan(Typeface.BOLD)
+                    TinyTextStyler.VALUE_ITALIC -> StyleSpan(Typeface.ITALIC)
+                    TinyTextStyler.VALUE_BOLD_ITALIC -> StyleSpan(Typeface.BOLD_ITALIC)
                     TinyTextStyler.VALUE_STRIKE -> StrikethroughSpan()
                     TinyTextStyler.VALUE_UNDERLINE -> UnderlineSpan()
                     else -> null
@@ -32,6 +34,7 @@ abstract class DefaultTextStyler : TinyTextStyler {
             TinyTextStyler.KEY_COLOR -> getForegroundColor(value).let(::ForegroundColorSpan)
             TinyTextStyler.KEY_ABSOLUTE_SIZE -> getAbsoluteSize(value).let(::AbsoluteSizeSpan)
             TinyTextStyler.KEY_RELATIVE_SIZE -> getRelativeSize(value).let(::RelativeSizeSpan)
+            TinyTextStyler.KEY_TYPEFACE -> getTypeface(value)?.let(::CustomTypefaceSpan)
             else -> null
         }
     }
