@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TinyTextStyler</string>
+    <string name="demo">The quick <annotation color="#80614e" style="bold|underline" abs_size="32">brown</annotation> fox <annotation style="strike|italic">jumped</annotation> <annotation rel_size="0.5">over</annotation> the lazy <annotation click="dog">dog</annotation> <annotation arg="%1$d">%1$d</annotation> <annotation arg="%2$s">%2$s</annotation>.</string>
+
+    <plurals name="times">
+        <item quantity="one">time</item>
+        <item quantity="other">times</item>
+    </plurals>
 </resources>
