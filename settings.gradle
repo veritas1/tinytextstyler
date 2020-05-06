@@ -1,0 +1,3 @@
+rootProject.name='TinyTextStyler'
+include ':app'
+include ':tinytextstyler'
