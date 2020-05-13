@@ -1,5 +1,5 @@
-# Tiny Text Styler
-[ ![Download](https://api.bintray.com/packages/veritas1/Android/tiny-text-styler/images/download.svg) ](https://bintray.com/veritas1/Android/tiny-text-styler/_latestVersion)
+# Tiny Text Styler [ ![Download](https://api.bintray.com/packages/veritas1/Android/tiny-text-styler/images/download.svg) ](https://bintray.com/veritas1/Android/tiny-text-styler/_latestVersion) [![](https://img.shields.io/badge/License-MIT-blue)](/LICENSE)
+
 
 The code for applying vanilla string resources:
 ```
