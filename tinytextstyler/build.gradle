@@ -17,7 +17,7 @@ publish {
     repoName = 'Android'
     groupId = 'dev.markcharles'
     artifactId = 'tiny-text-styler'
-    publishVersion = '0.1.0'
+    publishVersion = '0.1.1'
     desc = 'Easily add style to your string resources, with dynamic argument support :)'
     website = 'https://github.com/veritas1/tinytextstyler'
 }
@@ -30,7 +30,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'

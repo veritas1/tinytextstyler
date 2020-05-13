@@ -3,7 +3,6 @@ package dev.markcharles.tinytextstyler
 import android.graphics.Color
 import android.graphics.Typeface
 import android.text.style.*
-import android.view.View
 
 abstract class DefaultTextStyler : TinyTextStyler {
 
@@ -21,15 +20,7 @@ abstract class DefaultTextStyler : TinyTextStyler {
                 }
 
             }
-            TinyTextStyler.KEY_CLICK -> {
-                getSpanClickListener(value)?.let {
-                    object : ClickableSpan() {
-                        override fun onClick(widget: View) {
-                            it.onClick(widget)
-                        }
-                    }
-                }
-            }
+            TinyTextStyler.KEY_CLICK -> getClickableSpan(value)
             TinyTextStyler.KEY_BACKGROUND_COLOR -> getBackgroundColor(value).let(::BackgroundColorSpan)
             TinyTextStyler.KEY_COLOR -> getForegroundColor(value).let(::ForegroundColorSpan)
             TinyTextStyler.KEY_ABSOLUTE_SIZE -> getAbsoluteSize(value).let(::AbsoluteSizeSpan)
@@ -49,7 +40,7 @@ abstract class DefaultTextStyler : TinyTextStyler {
 
     open fun getBackgroundColor(value: String): Int = parseColor(value)
 
-    open fun getSpanClickListener(value: String): View.OnClickListener? = null
+    open fun getClickableSpan(value: String): ClickableSpan? = null
 
     private fun parseColor(value: String): Int {
         return when (value) {

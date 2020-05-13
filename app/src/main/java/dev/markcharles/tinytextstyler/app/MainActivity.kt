@@ -3,6 +3,7 @@ package dev.markcharles.tinytextstyler.app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
@@ -18,11 +19,13 @@ class MainActivity : AppCompatActivity() {
             return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value.toFloat(), resources.displayMetrics).toInt()
         }
 
-        override fun getSpanClickListener(value: String): View.OnClickListener? {
+        override fun getClickableSpan(value: String): ClickableSpan? {
             return when (value) {
-                "dog" -> View.OnClickListener {
-                    Toast.makeText(this@MainActivity, "Clicked dog text!", Toast.LENGTH_SHORT)
-                        .show()
+                "dog" -> object : ClickableSpan() {
+                    override fun onClick(widget: View) {
+                        Toast.makeText(this@MainActivity, "Clicked dog text!", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 }
                 else -> null
             }
@@ -35,10 +38,10 @@ class MainActivity : AppCompatActivity() {
         val jumpCount = 3
         val plural = resources.getQuantityString(R.plurals.times, 3)
         demo_no_style_example.apply {
-            text = getString(R.string.demo, jumpCount, plural)
+            text = getString(R.string.demo, "Hewllo", jumpCount, plural)
         }
         demo_style_example.apply {
-            text = getStyledText(R.string.demo, myStyler, jumpCount, plural)
+            text = getStyledText(R.string.demo, myStyler, "Hello", jumpCount, plural)
             movementMethod = LinkMovementMethod.getInstance()
         }
     }

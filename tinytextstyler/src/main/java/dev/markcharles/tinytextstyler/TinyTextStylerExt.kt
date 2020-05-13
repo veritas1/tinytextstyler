@@ -16,9 +16,7 @@ fun Context.getStyledText(
 
     val text = getText(resId) as SpannedString
     return SpannableStringBuilder(text).apply {
-        getSpans(0, length, android.text.Annotation::class.java).apply {
-            sortBy<android.text.Annotation, Boolean> { it.value == TinyTextStyler.KEY_ARGUMENT }
-        }.forEach<android.text.Annotation> { annotation ->
+        getSpans(0, length, android.text.Annotation::class.java).forEach<android.text.Annotation> { annotation ->
             val start = getSpanStart(annotation)
             val end = getSpanEnd(annotation)
 
@@ -46,6 +44,6 @@ private fun Spannable.applyStyle(
     this.setSpan(
         characterStyle,
         start, end,
-        Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
     )
 }
